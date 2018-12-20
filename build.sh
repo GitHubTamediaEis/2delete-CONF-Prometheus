@@ -2,8 +2,8 @@
 VERSION=$(cat VERSION)
 TGZNAME=prometheus-${VERSION}.tar.gz
 FILES="
-install-prometheus-echosystem.sh
-echosystem-versions.sh
+install-prometheus-ecosystem.sh
+ecosystem-versions.sh
 prometheus/install.sh
 prometheus/prometheus.yaml
 prometheus/start_stop_prometheus.sh
