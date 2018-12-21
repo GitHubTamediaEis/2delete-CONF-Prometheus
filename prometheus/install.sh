@@ -28,7 +28,7 @@ fi
 CURDIR=$(dirname $0)
 [ -f /etc/prometheus/prometheus.yaml ] || cp $CURDIR/prometheus.yaml /etc/prometheus/prometheus.yaml
 
-# Had start-stop script
+# Handled start-stop script
 
 
 
