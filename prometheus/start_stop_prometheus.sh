@@ -4,24 +4,26 @@
 #
 # chkconfig: 345 20 80
 # description: Start, stop script for prometheus
+# processname: prometheus
 
-. /etc/init.d/functions
-
-DAEMON=/opt/prometheus/prometheus
+PROGNAME=prometheus
+DAEMON=/opt/prometheus/$PROGNAME
 CONFIG=/etc/prometheus/prometheus.yaml
+LOGFILE=/var/log/prometheus.log
+
 TSDBPATH="--storage.tsdb.path /var/lib/prometheus"
 TSDBRETENTION="--storage.tsdb.retention 15d"
 
 [ -x $DAEMON ] || exit 0
 
-PID=$(ps -f o ppid,pid,cmd|awk '$1==1 && /'$DAEMON'/{print $2}'
+PID=$(ps -f -o ppid,pid,cmd|awk '$1==1 && /'$(echo $DAEMON|tr / .)'/ {print $2}')
 
 start() {
     echo -n "Starting Prometheus: "
     if [ "x$PID" = "x" ]; then
-	daemon $DAEMON $TSDBPATH $TSDBRETENTION --config.file=$CONFIG
+	$DAEMON $TSDBPATH $TSDBRETENTION --config.file=$CONFIG > $LOGFILE < /dev/null 2>&1 &
 	RETVAL=$?
-	echo
+	echo "started"
 	return $RETVAL
     else
 	echo "prometheus already running: $PID"
@@ -34,8 +36,18 @@ stop() {
     if [ "x$PID" = "x" ]; then
 	echo "prometheus already stopped"
     else
-	killproc -p $PID prometheus
-	echo
+	kill -TERM $PID
+	kill 0 $PID
+	echo "prometheus stopped"
+    fi
+    return 0
+}
+
+status() {
+    if [ "x$PID" = "x" ]; then
+	echo "prometheus not running"
+    else
+	echo "prometheus running at $PID"
     fi
     return 0
 }
@@ -45,8 +57,8 @@ reload() {
     if [ "x$PID" = "x" ]; then
 	echo "prometheus not running"
     else
-	killproc -p $PID prometheus
-	echo
+	kill -HUP $PID
+	echo "prometheus reloaded"
     fi
     return 0
 }
@@ -59,7 +71,7 @@ case "$1" in
 	stop
 	;;
     status)
-	status prometheus
+	status
 	;;
     restart)
 	stop
