@@ -17,7 +17,8 @@ if [ \! -d $DIR ]; then
 fi
 
 # Handle soft link (/opt/prometheus to /opt/prometheus-x.y.z.linux-amd64)
-[ -h /opt/prometheus ] && rm -f /opt/prometheus && ln -s /opt/$DIR prometheus
+[ -h /opt/prometheus ] && rm -f /opt/prometheus
+ln -s /opt/$DIR /opt/prometheus
 
 # Create configuration directory if necessary
 [ -d /etc/prometheus ] || mkdir /etc/prometheus
@@ -28,8 +29,8 @@ fi
 CURDIR=$(dirname $0)
 [ -f /etc/prometheus/prometheus.yaml ] || cp $CURDIR/prometheus.yaml /etc/prometheus/prometheus.yaml
 
-# Had start-stop script
-
-
-
-
+# Handled start-stop script
+cp $CURDIR/start_stop_prometheus.sh /etc/init.d/prometheus
+chmod +x /etc/init.d/prometheus
+chkconfig --add prometheus
+service prometheus start
