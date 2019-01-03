@@ -4,13 +4,6 @@
 #
 # chkconfig: 345 20 80
 # description: Start, stop script for prometheus
-<<<<<<< HEAD
-
-. /etc/init.d/functions
-
-DAEMON=/opt/prometheus/prometheus
-CONFIG=/etc/prometheus/prometheus.yaml
-=======
 # processname: prometheus
 
 PROGNAME=prometheus
@@ -18,13 +11,12 @@ DAEMON=/opt/prometheus/$PROGNAME
 CONFIG=/etc/prometheus/prometheus.yaml
 LOGFILE=/var/log/prometheus.log
 
->>>>>>> 8273a9ac3630fc299a85f4af8f29b20d39693d4e
 TSDBPATH="--storage.tsdb.path /var/lib/prometheus"
 TSDBRETENTION="--storage.tsdb.retention 15d"
 
 [ -x $DAEMON ] || exit 0
 
-PID=$(ps -f -o ppid,pid,cmd|awk '$1==1 && /'$(echo $DAEMON|tr / .)'/ {print $2}')
+PID=$(ps -e -o ppid,pid,cmd|awk '$1==1 && /'$(echo $DAEMON|tr / .)'/ {print $2}')
 
 start() {
     echo -n "Starting Prometheus: "
