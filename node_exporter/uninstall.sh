@@ -11,5 +11,5 @@ DIR=$PROGRAM-$RELEASE.linux-amd64
 
 service $PROGRAM stop
 chkconfig --del $PROGRAM
-[ -f /usr/bin/uninstall-$PROGRAM.sh] && rm -f /usr/bin/uninstall-$PROGRAM.sh
+[ -f /usr/bin/uninstall-$PROGRAM.sh ] && rm -f /usr/bin/uninstall-$PROGRAM.sh
 exit 0
