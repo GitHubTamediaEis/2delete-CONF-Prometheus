@@ -1,3 +1,4 @@
+# my global config
 global:
   scrape_interval:     15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
   evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
@@ -26,4 +27,9 @@ scrape_configs:
 
     static_configs:
     - targets: ['localhost:9090']
-      
+  - job_name: 'ec2'
+    ec2_sd_configs:
+    - region: 'eu-west-1'
+      #role_arn: 'arn:aws:iam::763149303469:role/AWSCloudWatchAllowEC2callAWSservices'
+      #profile: roland
+      port: 9100

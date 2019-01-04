@@ -29,8 +29,14 @@ ln -s /opt/$DIR /opt/prometheus
 CURDIR=$(dirname $0)
 [ -f /etc/prometheus/prometheus.yaml ] || cp $CURDIR/prometheus.yaml /etc/prometheus/prometheus.yaml
 
-# Handled start-stop script
+# Handle start-stop script
 cp $CURDIR/start_stop_prometheus.sh /etc/init.d/prometheus
 chmod +x /etc/init.d/prometheus
 chkconfig --add prometheus
 service prometheus start
+
+# Handle update and uninstall scripts
+cp $CURDIR/update-config.sh /usr/bin/update-prometheus-config.sh
+chmod +x /usr/bin/update-prometheus-config.sh
+cp $CURDIR/uninstall.sh /usr/bin/uninstall-prometheus.sh
+chmod +x /usr/bin/uninstall-prometheus.sh
