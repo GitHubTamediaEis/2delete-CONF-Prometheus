@@ -7,6 +7,7 @@
 PROGRAM=node_exporter
 RELEASE=${NODE_EXPORTER_RELEASE:-0.17.0}
 DIR=$PROGRAM-$RELEASE.linux-amd64
+CURDIR=$(dirname $0)
 
 if [ \! -d $DIR ]; then
     URL="https://github.com/prometheus/node_exporter/releases/download/v${RELEASE}/node_exporter-${RELEASE}.linux-amd64.tar.gz"
