@@ -14,3 +14,8 @@ FILETODL="install.sh start_stop_node_exporter.sh uninstall.sh"
 cd $INSTALLDIR
 pwd
 ls -l
+for shfile in 'FILETODL'
+do
+    echo $shfile
+    urldl=$URL_DL_GITHUB$shfile
+done
