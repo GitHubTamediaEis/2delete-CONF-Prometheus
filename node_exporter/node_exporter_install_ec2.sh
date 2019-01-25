@@ -31,5 +31,5 @@ done
 
 # remove installation dir
 cd ..
-[ -d $INSTALLDIR ] && [ -f $INSTALLDIR/$INSTALLSH ] && echo "OK RM" &&  rm -rf $INSTALLDIR
+[ -d $INSTALLDIR ] && [ -f $INSTALLDIR/$INSTALLSH ] &&  rm -rf $INSTALLDIR
 
