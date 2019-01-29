@@ -2,7 +2,7 @@
 region: eu-west-1
 metrics:
 - aws_namespace: AWS/ApplicationELB
-  aws_metric_name: HealthyHostCount
+  aws_metric_name: HealthyHostCounts2
   aws_dimensions: [TargetGroup, LoadBalancer, AvailabilityZone]
   aws_statistics: [Average]
 
@@ -161,6 +161,7 @@ metrics:
 - aws_namespace: AWS/S3
   aws_metric_name: BucketSizeBytes
   aws_dimensions: [BucketName, StorageType]
+  set_timestamp: false
   aws_statistics: [Average] # Valid statistics (https://docs.aws.amazon.com/AmazonS3/latest/dev/cloudwatch-monitoring.html): Average
   range_seconds: 172800
   period_seconds: 86400
@@ -168,6 +169,7 @@ metrics:
 - aws_namespace: AWS/S3
   aws_metric_name: NumberOfObjects
   aws_dimensions: [BucketName, StorageType]
+  set_timestamp: false
   aws_statistics: [Average] # Valid statistics (https://docs.aws.amazon.com/AmazonS3/latest/dev/cloudwatch-monitoring.html): Average
   range_seconds: 172800
   period_seconds: 86400
