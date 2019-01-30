@@ -8,6 +8,7 @@
 
 PROGNAME=node_exporter
 DAEMON=/opt/node_exporter/$PROGNAME
+PORTNUM=--web.listen-address=":9100"
 LOGFILE=/var/log/node_exporter.log
 
 [ -x $DAEMON ] || exit 0
@@ -17,7 +18,7 @@ PID=$(ps -e -o ppid,pid,cmd|awk '$1==1 && /'$(echo $DAEMON|tr / .)'/ {print $2}'
 start() {
     echo -n "Starting Node_Exporter: "
     if [ "x$PID" = "x" ]; then
-	$DAEMON  > $LOGFILE < /dev/null 2>&1 &
+	$DAEMON $PORTNUM > $LOGFILE < /dev/null 2>&1 &
 	RETVAL=$?
 	echo "started"
 	return $RETVAL
