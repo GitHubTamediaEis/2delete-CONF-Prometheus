@@ -8,7 +8,7 @@
 
 PROGNAME=node_exporter
 DAEMON=/opt/node_exporter/$PROGNAME
-PORTNUM=--web.listen-address=":9100"
+PORTNUM=--web.listen-address=":9110"
 LOGFILE=/var/log/node_exporter.log
 
 [ -x $DAEMON ] || exit 0
