@@ -7,10 +7,10 @@ INSTALLDIR=/tmp/grafana
 
 if [ `rpm -qa |grep -i grafana-|wc -l` -eq 0 ]; then
     URL="https://dl.grafana.com/oss/release/grafana-5.4.3-1.x86_64.rpm"
-    yum install $URL
+    yum -y install $URL
     if [ $? != 0 ]; then
-	    echo "yum instal $URL failed"
-	    exit 1
+            echo "yum instal $URL failed"
+            exit 1
     fi
 fi
 
@@ -23,8 +23,10 @@ fi
 #CURDIR=$(dirname $0)
 #[ -f /etc/prometheus/prometheus.yaml ] || cp $CURDIR/prometheus.yaml /etc/prometheus/prometheus.yaml
 
+
 # Handle start-stop script
-service grafana start
+chkconfig --add grafana-server
+service grafana-server start
 
 # Handle update and uninstall scripts
 #cp $CURDIR/update-config.sh /usr/bin/update-prometheus-config.sh
