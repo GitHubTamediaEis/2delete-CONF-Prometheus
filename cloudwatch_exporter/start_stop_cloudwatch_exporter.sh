@@ -9,7 +9,7 @@
 PROGNAME=cloudwatch_exporter
 JAR=/opt/cloudwatch_exporter/$PROGNAME-jar-with-dependencies.jar
 LOGFILE=/var/log/cloudwatch_exporter.log
-CONFIG=/etc/cloudwatch_exporter.yaml
+CONFIG=/etc/prometheus/cloudwatch_exporter.yaml
 
 [ -f $JAR ] || exit 0
 
