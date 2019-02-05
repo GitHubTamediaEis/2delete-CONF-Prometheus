@@ -31,7 +31,7 @@ ln -s /opt/$DIR /opt/$PROGRAM
 # Put configuration file if not exists
 # Notice that the configuration script should be in the same diretory
 # as this script
-[ -d /opt/$CFGDIR ] || mkdir $CFGDIR 
+[ -d $CFGDIR ] || mkdir $CFGDIR 
 [ -f $CFGDIR/$PROGRAM.yaml ] || cp $CURDIR/$PROGRAM.yaml $CFGDIR/$PROGRAM.yaml
 
 # Handle start-stop script
