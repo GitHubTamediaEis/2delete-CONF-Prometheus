@@ -9,6 +9,7 @@
 PROGRAM=cloudwatch_exporter
 RELEASE=${CLOUDWATCH_EXPORTER_RELEASE:-0.5.0}
 DIR=$PROGRAM-$RELEASE
+CFGDIR=/etc/prometheus
 JAR=$PROGRAM-jar-with-dependencies.jar
 
 CURDIR=$(dirname $0)
@@ -30,7 +31,8 @@ ln -s /opt/$DIR /opt/$PROGRAM
 # Put configuration file if not exists
 # Notice that the configuration script should be in the same diretory
 # as this script
-[ -f /etc/$PROGRAM.yaml ] || cp $CURDIR/$PROGRAM.yaml /etc/$PROGRAM.yaml
+[ -d /opt/$CFGDIR ] || mkdir $CFGDIR 
+[ -f $CFGDIR/$PROGRAM.yaml ] || cp $CURDIR/$PROGRAM.yaml $CFGDIR/$PROGRAM.yaml
 
 # Handle start-stop script
 cp $CURDIR/start_stop_$PROGRAM.sh /etc/init.d/$PROGRAM
