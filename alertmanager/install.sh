@@ -4,7 +4,7 @@
 # with x.y.z = release
 
 # Define release of prometheus and deduce installation directory
-RELEASE=${PROMETHEUS_RELEASE:-0.16.1}
+RELEASE=${ALERTMANAGER_RELEASE:-0.16.1}
 DIR=alertmanager-$RELEASE.linux-amd64
 -amd64.tar.gz
 
