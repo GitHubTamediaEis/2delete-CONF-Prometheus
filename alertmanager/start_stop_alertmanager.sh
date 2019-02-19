@@ -8,7 +8,7 @@
 
 PROGNAME=alertmanager
 DAEMON=/opt/alertmanager/$PROGNAME
-CONFIG=/etc/prometheus/alertmanager.yaml
+CONFIG=/etc/prometheus/alertmanager.yml
 LOGFILE=/var/log/alertmanager.log
 
 [ -x $DAEMON ] || exit 0
