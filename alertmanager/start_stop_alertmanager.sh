@@ -18,7 +18,7 @@ PID=$(ps -e -o ppid,pid,cmd|awk '$1==1 && /'$(echo $DAEMON|tr / .)'/ {print $2}'
 start() {
     echo -n "Starting alertmanager: "
     if [ "x$PID" = "x" ]; then
-	    $DAEMON $TSDBPATH $TSDBRETENTION --config.file=$CONFIG > $LOGFILE < /dev/null 2>&1 &
+	    $DAEMON --config.file=$CONFIG > $LOGFILE < /dev/null 2>&1 &
 	    RETVAL=$?
 	    echo "started"
 	    return $RETVAL
