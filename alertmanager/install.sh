@@ -33,7 +33,7 @@ CURDIR=$(dirname $0)
 # Handle start-stop script
 cp $CURDIR/start_stop_alertmanager.sh /etc/init.d/alertmanager
 chmod +x /etc/init.d/alertmanager
-chkconfig --add alertnamager
+chkconfig --add alertmanager
 service alertmanager start
 
 # Handle update and uninstall scripts
