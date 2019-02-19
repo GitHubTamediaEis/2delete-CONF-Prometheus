@@ -28,7 +28,7 @@ ln -s /opt/$DIR /opt/alertmanager
 # Notice that the configuration script should be in the same diretory
 # as this script
 CURDIR=$(dirname $0)
-[ -f /etc/prometheus/prometheus.yaml ] || cp $CURDIR/prometheus.yaml /etc/prometheus/prometheus.yaml
+[ -f /etc/prometheus/alertmanager.yml ] || cp $CURDIR/alertmanager.yml /etc/prometheus/alertmanager.yml
 
 # Handle start-stop script
 cp $CURDIR/start_stop_alertmanager.sh /etc/init.d/alertmanager
