@@ -10,6 +10,9 @@ PROGNAME=alertmanager
 DAEMON=/opt/alertmanager/$PROGNAME
 CONFIG=/etc/prometheus/alertmanager.yml
 LOGFILE=/var/log/alertmanager.log
+URLCFG='--web.listen-address=127.0.0.1:9093 --web.external-url=http://prome-prome-1wjrjx4lsuoyu-1004371917.eu-west-1.elb.amazonaws.com/alertmanager/ --web.r
+oute-prefix=/alertmanager'
+#LOGLEVEL='--log.level=debug'
 
 [ -x $DAEMON ] || exit 0
 
@@ -18,7 +21,7 @@ PID=$(ps -e -o ppid,pid,cmd|awk '$1==1 && /'$(echo $DAEMON|tr / .)'/ {print $2}'
 start() {
     echo -n "Starting alertmanager: "
     if [ "x$PID" = "x" ]; then
-	    $DAEMON --config.file=$CONFIG > $LOGFILE < /dev/null 2>&1 &
+	    $DAEMON --config.file=$CONFIG $URLCFG $LOGLEVEL > $LOGFILE < /dev/null 2>&1 &
 	    RETVAL=$?
 	    echo "started"
 	    return $RETVAL
