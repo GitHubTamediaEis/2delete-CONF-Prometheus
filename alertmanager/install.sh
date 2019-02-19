@@ -6,7 +6,7 @@
 # Define release of prometheus and deduce installation directory
 RELEASE=${ALERTMANAGER_RELEASE:-0.16.1}
 DIR=alertmanager-$RELEASE.linux-amd64
--amd64.tar.gz
+
 
 if [ \! -d $DIR ]; then
     URL="https://github.com/prometheus/alertmanager/releases/download/v${RELEASE}/alertmanager-${RELEASE}.linux-amd64.tar.gz"
@@ -38,6 +38,6 @@ service alertmanager start
 
 # Handle update and uninstall scripts
 cp $CURDIR/update-config.sh /usr/bin/update-alertmanager-config.sh
-chmod +x /usr/bin/update-alertnamager-config.sh
+chmod +x /usr/bin/update-alertmanager-config.sh
 cp $CURDIR/uninstall.sh /usr/bin/uninstall-alertmanager.sh
 chmod +x /usr/bin/uninstall-alertmanager.sh
