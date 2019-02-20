@@ -10,8 +10,7 @@ PROGNAME=alertmanager
 DAEMON=/opt/alertmanager/$PROGNAME
 CONFIG=/etc/prometheus/alertmanager.yml
 LOGFILE=/var/log/alertmanager.log
-URLCFG='--web.listen-address=127.0.0.1:9093 --web.external-url=http://prome-prome-1wjrjx4lsuoyu-1004371917.eu-west-1.elb.amazonaws.com/alertmanager/ --web.r
-oute-prefix=/alertmanager'
+URLCFG='--web.listen-address=127.0.0.1:9093 --web.external-url=http://prome-prome-1wjrjx4lsuoyu-1004371917.eu-west-1.elb.amazonaws.com/alertmanager/ --web.route-prefix=/alertmanager'
 #LOGLEVEL='--log.level=debug'
 
 [ -x $DAEMON ] || exit 0
