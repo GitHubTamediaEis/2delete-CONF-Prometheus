@@ -4,7 +4,7 @@
 # with x.y.z = release
 
 # Define release of prometheus and deduce installation directory
-RELEASE=${PROMETHEUS_RELEASE:-2.6.0}
+RELEASE=${PROMETHEUS_RELEASE:-2.7.1}
 DIR=prometheus-$RELEASE.linux-amd64
 
 if [ \! -d $DIR ]; then
