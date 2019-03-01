@@ -22,6 +22,8 @@ ln -s /opt/$DIR /opt/prometheus
 
 # Create configuration directory if necessary
 [ -d /etc/prometheus ] || mkdir /etc/prometheus
+[ -d /etc/prometheus/prometheus_conf.d ] || mkdir /etc/prometheus/prometheus_conf.d
+
 
 # Put configuration file if not exists
 # Notice that the configuration script should be in the same diretory
