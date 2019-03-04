@@ -8,6 +8,7 @@
 # jar file name (cloudwatch_exporter is a java program)
 PROGRAM=yace_cloudwatch_exporter
 RELEASE=${YACE_CLOUDWATCH_EXPORTER_RELEASE:-0.12.0}
+BINNAME=yace-linux-amd64
 DIR=$PROGRAM-$RELEASE
 CFGDIR=/etc/prometheus
 
@@ -16,7 +17,7 @@ CURDIR=$(dirname $0)
 if [ \! -d /opt/$DIR ]; then
     mkdir /opt/$DIR
     URL="https://github.com/ivx/yet-another-cloudwatch-exporter/releases/download/0.12.0/yace-linux-amd64-0.12.0"
-    wget -O /opt/$DIR/$PROGRAM$RELEASE $URL
+    wget -O /opt/$DIR/$PROGRAM/$BINNAME $URL
     if [ $? != 0 ]; then
 	echo "Download of $PROGRAM failed"
 	exit 1
