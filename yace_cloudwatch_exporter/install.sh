@@ -17,12 +17,12 @@ CURDIR=$(dirname $0)
 if [ \! -d /opt/$DIR ]; then
     mkdir /opt/$DIR
     URL="https://github.com/ivx/yet-another-cloudwatch-exporter/releases/download/0.12.0/yace-linux-amd64-0.12.0"
-    wget -O /opt/$PROGRAM/$BINNAME $URL
+    wget -O /opt/$DIR/$BINNAME $URL
     if [ $? != 0 ]; then
 	echo "Download of $PROGRAM failed"
 	exit 1
     fi
-    chmod +x /opt/$PROGRAM/$BINNAME
+    chmod +x /opt/$DIR/$BINNAME
 fi
 
 # Handle soft link (/opt/$PROGRAM to /opt/$PROGRAM-x.y.z...)
