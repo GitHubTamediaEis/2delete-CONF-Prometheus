@@ -1,1 +1,4 @@
-# new
+discovery:
+  exportedTagsOnMetrics:
+    ec2:
+      - Name
