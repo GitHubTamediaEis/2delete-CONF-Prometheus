@@ -22,6 +22,10 @@ fi
 [ -h /opt/$PROGRAM ] && rm -f /opt/$PROGRAM
 ln -s /opt/$DIR /opt/$PROGRAM
 
+# Handle collector textfile directory with default path: /var/lib/node_exporter/textfile_collector
+[ ! -d /var/lib/node_exporter ] && mkdir /var/lib/node_exporter
+[ ! -d /var/lib/node_exporter/textfile_collector ] && mkdir /var/lib/node_exporter/textfile_collector
+
 # Handle start-stop script
 cp $CURDIR/start_stop_$PROGRAM.sh /etc/init.d/$PROGRAM
 chmod +x /etc/init.d/$PROGRAM
