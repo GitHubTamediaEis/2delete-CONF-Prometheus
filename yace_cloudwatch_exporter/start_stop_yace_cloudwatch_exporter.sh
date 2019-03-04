@@ -9,7 +9,7 @@
 
 BINBASE=
 PROGNAME=
-DAEMON="/opt/yace_cloudwatch_exporter/$PROGNAME
+DAEMON="/opt/yace_cloudwatch_exporter/$PROGNAME"
 #PORTNUM=""
 CFGFILE="-config.file /etc/prometheus/yace_cloudwatch_exporter.yml"
 LOGFILE=/var/log/yace_cloudwatch_exporter.log
@@ -21,7 +21,7 @@ PID=$(ps -e -o ppid,pid,cmd|awk '$1==1 && /'$(echo $DAEMON|tr / .)'/ {print $2}'
 start() {
     echo -n "Starting yace_cloudwatch_exporter: "
     if [ "x$PID" = "x" ]; then
-	$DAEMON $PORTNUM $DAEMON > $LOGFILE < /dev/null 2>&1 &
+	$DAEMON $PORTNUM $CFGFILE > $LOGFILE < /dev/null 2>&1 &
 	RETVAL=$?
 	echo "started"
 	return $RETVAL
