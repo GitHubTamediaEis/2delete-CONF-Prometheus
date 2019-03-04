@@ -5,3 +5,4 @@
 [ -f alertmanager/install.sh ] && bash alertmanager/install.sh
 [ -f node_exporter/install.sh ] && bash node_exporter/install.sh
 [ -f cloudwatch_exporter/install.sh ] && bash cloudwatch_exporter/install.sh
+[ -f yace_cloudwatch_exporter/install.sh ] && bash yace_cloudwatch_exporter/install.sh
