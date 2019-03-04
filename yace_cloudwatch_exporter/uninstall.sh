@@ -7,7 +7,8 @@ RELEASE=${YACE_CLOUDWATCH_EXPORTER_RELEASE:-0.12.0}
 DIR=$PROGRAM-$RELEASE
 CFGFILE=/etc/prometheus/$PROGRAM.yml
 
-exec sh -c "/etc/init.d/$PROGRAM stop"
+/etc/init.d/$PROGRAM stop
+
 chkconfig --del $PROGRAM
 
 [ -d /opt/$DIR ] && rm -rf /opt/$DIR
