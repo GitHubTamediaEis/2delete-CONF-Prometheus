@@ -1,23 +1,22 @@
 #!/bin/bash
-# Installation script of Prometheus's cloudwatch exporter
-# Will by installed in /opt/cloudwatch_exporter-x.y.z-amd64
+# Installation script of Prometheus's yace cloudwatch exporter
+# Will by installed in /opt/yace_cloudwatch_exporter-x.y.z-amd64
 # with x.y.z = release
 #https://search.maven.org/remotecontent?filepath=io/prometheus/cloudwatch/cloudwatch_exporter/$RELEAS/cloudwatch_exporter-$RELEASE-jar-with-dependencies.jar
 
 # Define release of cloudwatch_exporter and deduce installation directory and
 # jar file name (cloudwatch_exporter is a java program)
-PROGRAM=cloudwatch_exporter
-RELEASE=${CLOUDWATCH_EXPORTER_RELEASE:-0.5.0}
+PROGRAM=yace_cloudwatch_exporter
+RELEASE=${YACE_CLOUDWATCH_EXPORTER_RELEASE:-0.12.0}
 DIR=$PROGRAM-$RELEASE
 CFGDIR=/etc/prometheus
-JAR=$PROGRAM-jar-with-dependencies.jar
 
 CURDIR=$(dirname $0)
 
 if [ \! -d /opt/$DIR ]; then
     mkdir /opt/$DIR
-    URL="https://search.maven.org/remotecontent?filepath=io/prometheus/cloudwatch/cloudwatch_exporter/$RELEASE/$DIR-jar-with-dependencies.jar"
-    wget -O /opt/$DIR/$JAR $URL
+    URL="https://github.com/ivx/yet-another-cloudwatch-exporter/releases/download/0.12.0/yace-linux-amd64-0.12.0"
+    wget -O /opt/$DIR/. $URL
     if [ $? != 0 ]; then
 	echo "Download of $PROGRAM failed"
 	exit 1
