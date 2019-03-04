@@ -16,7 +16,7 @@ CURDIR=$(dirname $0)
 if [ \! -d /opt/$DIR ]; then
     mkdir /opt/$DIR
     URL="https://github.com/ivx/yet-another-cloudwatch-exporter/releases/download/0.12.0/yace-linux-amd64-0.12.0"
-    wget -O /opt/$DIR/. $URL
+    wget -O /opt/$DIR/$PROGRAM$RELEASE $URL
     if [ $? != 0 ]; then
 	echo "Download of $PROGRAM failed"
 	exit 1
