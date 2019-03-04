@@ -31,7 +31,7 @@ ln -s /opt/$DIR /opt/$PROGRAM
 # Notice that the configuration script should be in the same diretory
 # as this script
 [ -d $CFGDIR ] || mkdir $CFGDIR 
-[ -f $CFGDIR/$PROGRAM.yaml ] || cp $CURDIR/$PROGRAM.yaml $CFGDIR/$PROGRAM.yaml
+[ -f $CFGDIR/$PROGRAM.yml ] || cp $CURDIR/$PROGRAM.yml $CFGDIR/$PROGRAM.yml
 
 # Handle start-stop script
 cp $CURDIR/start_stop_$PROGRAM.sh /etc/init.d/$PROGRAM
