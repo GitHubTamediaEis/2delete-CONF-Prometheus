@@ -11,6 +11,8 @@ chkconfig --del $PROGRAM
 
 [ -d /opt/$DIR ] && rm -rf /opt/$DIR
 [ -h /opt/$PROGRAM ] && rm -f /opt/$PROGRAM
+[ -d /var/lib/node_exporter ] && rm -rf /var/lib/node_exporter
+
 
 [ -f /usr/bin/uninstall-$PROGRAM.sh ] && rm -f /usr/bin/uninstall-$PROGRAM.sh
 exit 0
