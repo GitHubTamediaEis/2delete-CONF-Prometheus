@@ -26,7 +26,7 @@ start() {
 	return $RETVAL
     else
 	echo "yace_cloudwatch_exporter already running: $PID"
-	exit 2
+	return 2
     fi
 }
 
@@ -36,7 +36,7 @@ stop() {
 	echo "yace_cloudwatch_exporter already stopped"
     else
 	kill -TERM $PID
-	kill 0 $PID
+	kill -0 $PID
 	echo "yace_cloudwatch_exporter stopped"
     fi
     return 0

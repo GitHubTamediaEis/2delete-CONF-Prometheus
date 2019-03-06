@@ -27,7 +27,7 @@ start() {
 	return $RETVAL
     else
 	echo "prometheus already running: $PID"
-	exit 2
+	return 2
     fi
 }
 
@@ -37,7 +37,7 @@ stop() {
 	echo "prometheus already stopped"
     else
 	kill -TERM $PID
-	kill 0 $PID
+	kill -0 $PID
 	echo "prometheus stopped"
     fi
     return 0

@@ -25,7 +25,7 @@ start() {
 	return $RETVAL
     else
 	echo "node_exporter already running: $PID"
-	exit 2
+	return 2
     fi
 }
 
@@ -35,7 +35,7 @@ stop() {
 	echo "node_exporter already stopped"
     else
 	kill -TERM $PID
-	kill 0 $PID
+	kill -0 $PID
 	echo "node_exporter stopped"
     fi
     return 0

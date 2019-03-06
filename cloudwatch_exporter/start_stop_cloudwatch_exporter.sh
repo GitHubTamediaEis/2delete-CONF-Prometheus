@@ -24,7 +24,7 @@ start() {
 	return $RETVAL
     else
 	echo "cloudwatch_exporter already running: $PID"
-	exit 2
+	return 2
     fi
 }
 
@@ -34,7 +34,7 @@ stop() {
 	echo "cloudwatch_exporter already stopped"
     else
 	kill -TERM $PID
-	kill 0 $PID
+	kill -0 $PID
 	echo "cloudwatch_exporter stopped"
     fi
     return 0
