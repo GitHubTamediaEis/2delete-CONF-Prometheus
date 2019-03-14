@@ -8,11 +8,13 @@ PROGRAM=node_exporter
 RELEASE=${NODE_EXPORTER_RELEASE:-0.17.0}
 DIR=$PROGRAM-$RELEASE.linux-amd64
 CURDIR=$(dirname $0)
+BOOLDL=""
 
 # If version of agent are the same --> no download
 if [ \! -d /opt/$DIR ]; then
     URL="https://github.com/prometheus/node_exporter/releases/download/v${RELEASE}/node_exporter-${RELEASE}.linux-amd64.tar.gz"
     wget -O - $URL | tar xfz - -C /opt
+    BOOLDL="yes"
     if [ $? != 0 ]; then
 	    echo "Download of prometheus failed"
 	    exit 1
@@ -22,10 +24,8 @@ else
 fi
 
 # If no difference between init.d scripts from github and current one --> no change --> exit 0
-# Mandatory condition: version of agent are included on the start_stop script
-# (if agent software change --> this start stop script changes too)
 diff -q $CURDIR/start_stop_$PROGRAM.sh /etc/init.d/$PROGRAM > /dev/null
-if [ $? -eq 0 ]; then
+if [[ $? -eq 0 && -n "$BOOLDL" ]]; then
     echo "There is no difference between these 2 files: $CURDIR/start_stop_$PROGRAM.sh /etc/init.d/$PROGRAM"
     echo "exit without action"
     exit 0
