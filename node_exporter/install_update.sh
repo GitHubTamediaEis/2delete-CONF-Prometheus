@@ -25,7 +25,7 @@ fi
 
 # If no difference between init.d scripts from github and current one --> no change --> exit 0
 diff -q $CURDIR/start_stop_$PROGRAM.sh /etc/init.d/$PROGRAM > /dev/null
-if [[ $? -eq 0 && -n "$BOOLDL" ]]; then
+if [[ $? -eq 0 && "$BOOLDL" != "yes" ]]; then
     echo "There is no difference between these 2 files: $CURDIR/start_stop_$PROGRAM.sh /etc/init.d/$PROGRAM"
     echo "exit without action"
     exit 0
