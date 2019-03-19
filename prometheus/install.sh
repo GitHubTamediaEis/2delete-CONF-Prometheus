@@ -6,6 +6,9 @@
 # Define release of prometheus and deduce installation directory
 RELEASE=${PROMETHEUS_RELEASE:-2.7.1}
 DIR=prometheus-$RELEASE.linux-amd64
+CFGFILE=/etc/prometheus/prometheus.yaml
+# Must be <*>.sh to be used by /etc/profile
+ALIASFILE=/etc/profile.d/prometheus_check_config.sh
 
 if [ \! -d $DIR ]; then
     URL="https://github.com/prometheus/prometheus/releases/download/v${RELEASE}/prometheus-${RELEASE}.linux-amd64.tar.gz"
@@ -29,7 +32,7 @@ ln -s /opt/$DIR /opt/prometheus
 # Notice that the configuration script should be in the same diretory
 # as this script
 CURDIR=$(dirname $0)
-[ -f /etc/prometheus/prometheus.yaml ] || cp $CURDIR/prometheus.yaml /etc/prometheus/prometheus.yaml
+[ -f $CFGFILE ] || cp $CURDIR/prometheus.yaml $CFGFILE
 
 # Handle start-stop script
 cp $CURDIR/start_stop_prometheus.sh /etc/init.d/prometheus
@@ -42,3 +45,7 @@ cp $CURDIR/update-config.sh /usr/bin/update-prometheus-config.sh
 chmod +x /usr/bin/update-prometheus-config.sh
 cp $CURDIR/uninstall.sh /usr/bin/uninstall-prometheus.sh
 chmod +x /usr/bin/uninstall-prometheus.sh
+
+# Add Prometheus check config alias
+echo "# Created during the Prometheus installation: check validity of configuration of Prometheus" > $ALIASFILE
+echo "alias prom_chk_config='/opt/prometheus/promtool check config /etc/prometheus/prometheus.yaml'" >> $ALIASFILE
