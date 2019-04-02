@@ -15,6 +15,9 @@ LOGFILE=/var/log/yace_cloudwatch_exporter.log
 
 [ -x $DAEMON ] || exit 0
 
+# Need comes from yace cloudwatch due to new configured metrics
+ulimit -n 2048
+
 PID=$(ps -e -o ppid,pid,cmd|awk '$1==1 && /'$(echo $DAEMON|tr / .)'/ {print $2}')
 
 start() {
