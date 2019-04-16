@@ -1,10 +1,9 @@
 #!/bin/bash
 # De-installation script of yace_cloudwatch_exporter
 
-# Define release of prometheus and deduce installation directory
+# Define installation directory
 PROGRAM=yace_cloudwatch_exporter
-RELEASE=${YACE_CLOUDWATCH_EXPORTER_RELEASE:-0.12.0}
-DIR=$PROGRAM-$RELEASE
+DIR=$PROGRAM-$YACE_CLOUDWATCH_EXPORTER_RELEASE
 CFGFILE=/etc/prometheus/$PROGRAM.yml
 
 /etc/init.d/$PROGRAM stop

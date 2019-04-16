@@ -3,13 +3,11 @@
 # Will by installed in /opt/alertmanager-x.y.z.linux-amd64
 # with x.y.z = release
 
-# Define release of prometheus and deduce installation directory
-RELEASE=${ALERTMANAGER_RELEASE:-0.16.1}
-DIR=alertmanager-$RELEASE.linux-amd64
-
+# Define installation directory
+DIR=alertmanager-$ALERTMANAGER_RELEASE.linux-amd64
 
 if [ \! -d $DIR ]; then
-    URL="https://github.com/prometheus/alertmanager/releases/download/v${RELEASE}/alertmanager-${RELEASE}.linux-amd64.tar.gz"
+    URL="https://github.com/prometheus/alertmanager/releases/download/v${ALERTMANAGER_RELEASE}/alertmanager-${ALERTMANAGER_RELEASE}.linux-amd64.tar.gz"
     wget -O - $URL | tar xfz - -C /opt
     if [ $? != 0 ]; then
 	echo "Download of alertmanager failed"

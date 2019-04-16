@@ -3,16 +3,15 @@
 # Will by installed in /opt/node_exporter--amd64
 # with x.y.z = release
 
-# Define release of prometheus and deduce installation directory
+# Define installation directory
 PROGRAM=node_exporter
-RELEASE=${NODE_EXPORTER_RELEASE:-0.17.0}
-DIR=$PROGRAM-$RELEASE.linux-amd64
+DIR=$PROGRAM-$NODE_EXPORTER_RELEASE.linux-amd64
 CURDIR=$(dirname $0)
 BOOLDL=""
 
 # If version of agent are the same --> no download
 if [ \! -d /opt/$DIR ]; then
-    URL="https://github.com/prometheus/node_exporter/releases/download/v${RELEASE}/node_exporter-${RELEASE}.linux-amd64.tar.gz"
+    URL="https://github.com/prometheus/node_exporter/releases/download/v${NODE_EXPORTER_RELEASE}/node_exporter-${NODE_EXPORTER_RELEASE}.linux-amd64.tar.gz"
     wget -O - $URL | tar xfz - -C /opt
     BOOLDL="yes"
     if [ $? != 0 ]; then

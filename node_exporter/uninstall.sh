@@ -1,10 +1,9 @@
 #!/bin/bash
 # De-installation script of node_exporter
 
-# Define release of prometheus and deduce installation directory
+# Define installation directory
 PROGRAM=node_exporter
-RELEASE=${NODE_EXPORTER_RELEASE:-0.17.0}
-DIR=$PROGRAM-$RELEASE.linux-amd64
+DIR=$PROGRAM-${NODE_EXPORTER_RELEASE}.linux-amd64
 
 service $PROGRAM stop
 chkconfig --del $PROGRAM

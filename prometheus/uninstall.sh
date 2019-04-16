@@ -1,9 +1,8 @@
 #!/bin/bash
 # De-installation script of Prometheus.
 
-# Define release of prometheus and deduce installation directory
-RELEASE=${PROMETHEUS_RELEASE:-2.6.0}
-DIR=prometheus-$RELEASE.linux-amd64
+# Define installation directory
+DIR=prometheus-$PROMETHEUS_RELEASE.linux-amd64
 
 service prometheus stop
 chkconfig --del prometheus

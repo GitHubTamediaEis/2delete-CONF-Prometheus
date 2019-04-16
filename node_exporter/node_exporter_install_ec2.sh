@@ -2,7 +2,7 @@
 # Installation script of Prometheus's node exporter usabla by any EC2 Linux
 # install v1.0 25.01.2019
 
-# Define release of prometheus and deduce installation directory
+# Define installation directory
 PROGRAM=node_exporter
 INSTALLDIR="/tmp/node_exporter_installation"
 URL_DL_GITHUB="https://github.com/GitHubTamediaEis/CONF-Prometheus/raw/v0.3/node_exporter/"

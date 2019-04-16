@@ -1,10 +1,9 @@
 #!/bin/bash
 # De-installation script of cloudwatch_exporter
 
-# Define release of prometheus and deduce installation directory
+# Define installation directory
 PROGRAM=cloudwatch_exporter
-RELEASE=${CLOUDWATCH_EXPORTER_RELEASE:-0.5.0}
-DIR=$PROGRAM-$RELEASE
+DIR=$PROGRAM-$CLOUDWATCH_EXPORTER_RELEASE
 
 service $PROGRAM stop
 chkconfig --del $PROGRAM

@@ -3,15 +3,14 @@
 # Will by installed in /opt/prometheus-x.y.z.linux-amd64
 # with x.y.z = release
 
-# Define release of prometheus and deduce installation directory
-RELEASE=${PROMETHEUS_RELEASE:-2.7.1}
-DIR=prometheus-$RELEASE.linux-amd64
+# Define installation directory
+DIR=prometheus-$PROMETHEUS_RELEASE.linux-amd64
 CFGFILE=/etc/prometheus/prometheus.yaml
 # Must be <*>.sh to be used by /etc/profile
 ALIASFILE=/etc/profile.d/prometheus_check_config.sh
 
 if [ \! -d $DIR ]; then
-    URL="https://github.com/prometheus/prometheus/releases/download/v${RELEASE}/prometheus-${RELEASE}.linux-amd64.tar.gz"
+    URL="https://github.com/prometheus/prometheus/releases/download/v${PROMETHEUS_RELEASE}/prometheus-${PROMETHEUS_RELEASE}.linux-amd64.tar.gz"
     wget -O - $URL | tar xfz - -C /opt
     if [ $? != 0 ]; then
 	echo "Download of prometheus failed"

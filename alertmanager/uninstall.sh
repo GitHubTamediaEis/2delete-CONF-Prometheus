@@ -1,9 +1,8 @@
 #!/bin/bash
 # De-installation script of alertmanager.
 
-# Define release of alertmanager and deduce installation directory
-RELEASE=${ALERTMANAGER_RELEASE:-0.16.1}
-DIR=alertmanager-$RELEASE.linux-amd64
+# Define installation directory
+DIR=alertmanager-$ALERTMANAGER_RELEASE.linux-amd64
 
 service alertmanager stop
 chkconfig --del alertmanager
