@@ -48,3 +48,6 @@ chmod +x /usr/bin/uninstall-prometheus.sh
 # Add Prometheus check config alias
 echo "# Created during the Prometheus installation: check validity of configuration of Prometheus" > $ALIASFILE
 echo "alias prom_chk_config='/opt/prometheus/promtool check config /etc/prometheus/prometheus.yaml'" >> $ALIASFILE
+
+# Add logrotation
+cp $CURDIR/logrotate_prometheus /etc/logrotate.d/prometheus
