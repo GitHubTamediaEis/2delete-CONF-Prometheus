@@ -51,3 +51,6 @@ service $PROGRAM start
 # Handle update and uninstall scripts
 cp $CURDIR/uninstall.sh /usr/bin/uninstall-$PROGRAM.sh
 chmod +x /usr/bin/uninstall-$PROGRAM.sh
+
+# Add logrotation
+cp $CURDIR/logrotate_node_exporter /etc/logrotate.d/node_exporter
