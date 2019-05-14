@@ -1,0 +1,19 @@
+/var/log/prometheus.log {
+    daily
+    missingok
+    create
+    notifempty
+    rotate 31
+    compress
+    postrotate
+        /etc/init.d/prometheus reload
+    endscript
+}
+
+/var/log/backup-prometheus.log {
+    daily
+    missingok
+    notifempty
+    rotate 31
+    compress
+}
