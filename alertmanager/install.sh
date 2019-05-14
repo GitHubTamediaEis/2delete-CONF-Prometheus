@@ -39,3 +39,6 @@ cp $CURDIR/update-config.sh /usr/bin/update-alertmanager-config.sh
 chmod +x /usr/bin/update-alertmanager-config.sh
 cp $CURDIR/uninstall.sh /usr/bin/uninstall-alertmanager.sh
 chmod +x /usr/bin/uninstall-alertmanager.sh
+
+# Add logrotation
+cp $CURDIR/logrotate_alertmanager /etc/logrotate.d/alertmanager
