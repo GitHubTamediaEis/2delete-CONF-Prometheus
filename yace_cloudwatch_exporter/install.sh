@@ -6,7 +6,7 @@
 
 # Define cloudwatch_exporter installation directory and
 PROGRAM=yace_cloudwatch_exporter
-BINNAME=yace-linux-amd64
+BINNAME=yace
 DIR=$PROGRAM-$YACE_CLOUDWATCH_EXPORTER_RELEASE
 CFGDIR=/etc/prometheus
 
@@ -17,7 +17,7 @@ if [ \! -d /opt/$DIR ]; then
     #URL="https://github.com/ivx/yet-another-cloudwatch-exporter/releases/download/v${YACE_CLOUDWATCH_EXPORTER_RELEASE}/yace-linux-amd64-v$YACE_CLOUDWATCH_EXPORTER_RELEASE"
     URL="https://github.com/ivx/yet-another-cloudwatch-exporter/releases/download/v${YACE_CLOUDWATCH_EXPORTER_RELEASE}/yet-another-cloudwatch-exporter_${YACE_CLOUDWATCH_EXPORTER_RELEASE}_Linux_x86_64.tar.gz"
     #wget -O /opt/$DIR/$BINNAME $URL
-    wget -q $URL | tar -xzf -C /opt/$DIR
+    wget -qO- $URL | tar xzf - -C /opt/$DIR
     if [ $? != 0 ]; then
 	echo "Download of $PROGRAM failed"
 	exit 1
