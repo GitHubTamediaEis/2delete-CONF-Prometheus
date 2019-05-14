@@ -7,7 +7,7 @@
 # processname: yace_cloudwatch_exporter
 # Version: 0.12.0
 
-PROGNAME=yace-linux-amd64
+PROGNAME=yace
 DAEMON="/opt/yace_cloudwatch_exporter/$PROGNAME"
 #PORTNUM=""
 CFGFILE="-config.file /etc/prometheus/yace_cloudwatch_exporter.yml"
