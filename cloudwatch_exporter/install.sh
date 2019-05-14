@@ -42,3 +42,6 @@ service $PROGRAM start
 # Handle update and uninstall scripts
 cp $CURDIR/uninstall.sh /usr/bin/uninstall-$PROGRAM.sh
 chmod +x /usr/bin/uninstall-$PROGRAM.sh
+
+# Add logrotation
+cp $CURDIR/logrotate_cloudwatch_exp /etc/logrotate.d/cloudwatch_exporter
