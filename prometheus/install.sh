@@ -8,6 +8,8 @@ DIR=prometheus-$PROMETHEUS_RELEASE.linux-amd64
 CFGFILE=/etc/prometheus/prometheus.yaml
 # Must be <*>.sh to be used by /etc/profile
 ALIASFILE=/etc/profile.d/prometheus_check_config.sh
+SCRIPTDIR=/opt/prometheus_scripts
+SCRIPTPROC=prometheus_check_proc.sh
 
 if [ \! -d $DIR ]; then
     URL="https://github.com/prometheus/prometheus/releases/download/v${PROMETHEUS_RELEASE}/prometheus-${PROMETHEUS_RELEASE}.linux-amd64.tar.gz"
@@ -48,6 +50,13 @@ chmod +x /usr/bin/uninstall-prometheus.sh
 # Add Prometheus check config alias
 echo "# Created during the Prometheus installation: check validity of configuration of Prometheus" > $ALIASFILE
 echo "alias prom_chk_config='/opt/prometheus/promtool check config /etc/prometheus/prometheus.yaml'" >> $ALIASFILE
+
+# Add scripts and schedule them
+[ -d $SCRIPTDIR ] || mkdir $SCRIPTDIR
+cp $CURDIR/prometheus_check_proc.sh $SCRIPTDIR/.
+croncmd="$SCRIPTDIR/$SCRIPTPROC"
+cronjob="*/1 * * * * $croncmd"
+( crontab -l | grep -v -F "$croncmd" ; echo "$cronjob" ) | crontab -
 
 # Add logrotation
 cp $CURDIR/logrotate_prometheus /etc/logrotate.d/prometheus
