@@ -7,6 +7,8 @@
 DIR=alertmanager-$ALERTMANAGER_RELEASE.linux-amd64
 # Must be <*>.sh to be used by /etc/profile
 ALIASFILE=/etc/profile.d/alertmanager_check_config.sh
+SCRIPTDIR=/opt/prometheus_scripts
+SCRIPTPROC=report_notification_sent.sh
 
 if [ \! -d $DIR ]; then
     URL="https://github.com/prometheus/alertmanager/releases/download/v${ALERTMANAGER_RELEASE}/alertmanager-${ALERTMANAGER_RELEASE}.linux-amd64.tar.gz"
@@ -45,6 +47,13 @@ chmod +x /usr/bin/uninstall-alertmanager.sh
 # Add Prometheus check config alias
 echo "# Created during the Alertmanager installation: check validity of configuration of Alertmanager" > $ALIASFILE
 echo "alias am_chk_config='/opt/alertmanager/amtool check-config /etc/prometheus/alertmanager.yml'" >> $ALIASFILE
+
+# Add scripts and schedule them
+[ -d $SCRIPTDIR ] || mkdir $SCRIPTDIR
+cp $CURDIR/prometheus_check_proc.sh $SCRIPTDIR/.
+croncmd="$SCRIPTDIR/$SCRIPTPROC"
+cronjob="59 * * * * $croncmd"
+( crontab -l | grep -v -F "$croncmd" ; echo "$cronjob" ) | crontab -
 
 # Add logrotation
 cp $CURDIR/logrotate_alertmanager /etc/logrotate.d/alertmanager
