@@ -13,7 +13,7 @@ LOGFILE=/var/log/prometheus.log
 
 TSDBPATH="--storage.tsdb.path /var/lib/prometheus"
 #TSDBRETENTION="--storage.tsdb.retention 15d"	### [DEPRECATED] --> --storage.tsdb.retention.time
-TSDBRETENTION="--storage.tsdb.retention.time 15d"
+TSDBRETENTION="--storage.tsdb.retention.time 31d"
 
 [ -x $DAEMON ] || exit 0
 
