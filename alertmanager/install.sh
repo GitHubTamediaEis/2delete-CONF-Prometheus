@@ -32,6 +32,7 @@ CURDIR=$(dirname $0)
 
 #Chaning alertmenager for alertsnitch
 if [ $Active -eq "yes" ]; then
+    echo "nece" > /etc/prometheus/nece
     sed -i '/^inhibit_rules:.*/i - name: 'alertsnitch'\n  webhook_configs:\n    - url: http://$ECSAddress/webhook2' /etc/prometheus/alertmanager.yml
 fi
 
