@@ -55,6 +55,7 @@ echo "alias prom_chk_config='/opt/prometheus/promtool check config /etc/promethe
 [ -d $SCRIPTDIR ] || mkdir $SCRIPTDIR
 cp $CURDIR/prometheus_check_proc.sh $SCRIPTDIR/.
 croncmd="$SCRIPTDIR/$SCRIPTPROC"
+chmod 755 $croncmd
 cronjob="*/1 * * * * $croncmd"
 ( crontab -l | grep -v -F "$croncmd" ; echo "$cronjob" ) | crontab -
 
