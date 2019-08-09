@@ -56,4 +56,5 @@ cronjob="59 * * * * $croncmd"
 ( crontab -l | grep -v -F "$croncmd" ; echo "$cronjob" ) | crontab -
 
 # Add logrotation
-cp $CURDIR/logrotate_alertmanager /etc/logrotate.d/alertmanager
+# *** /_\ *** Does not restart alertmanager!!! Currently all the configured silences are not persistent
+# cp $CURDIR/logrotate_alertmanager /etc/logrotate.d/alertmanager
