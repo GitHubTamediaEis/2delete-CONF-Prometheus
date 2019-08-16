@@ -50,10 +50,12 @@ echo "alias am_chk_config='/opt/alertmanager/amtool check-config /etc/prometheus
 
 # Add scripts and schedule them
 [ -d $SCRIPTDIR ] || mkdir $SCRIPTDIR
-cp $CURDIR/prometheus_check_proc.sh $SCRIPTDIR/.
+cp $CURDIR/report_notification_sent.sh $SCRIPTDIR/.
 croncmd="$SCRIPTDIR/$SCRIPTPROC"
+chmod 755 $croncmd
 cronjob="59 * * * * $croncmd"
 ( crontab -l | grep -v -F "$croncmd" ; echo "$cronjob" ) | crontab -
 
 # Add logrotation
-cp $CURDIR/logrotate_alertmanager /etc/logrotate.d/alertmanager
+# *** /_\ *** Does not restart alertmanager!!! Currently all the configured silences are not persistent
+# cp $CURDIR/logrotate_alertmanager /etc/logrotate.d/alertmanager

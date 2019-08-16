@@ -9,6 +9,8 @@ PROGRAM=yace_cloudwatch_exporter
 BINNAME=yace
 DIR=$PROGRAM-$YACE_CLOUDWATCH_EXPORTER_RELEASE
 CFGDIR=/etc/prometheus
+SCRIPTDIR=/opt/prometheus_scripts
+SCRIPTCHKSTART=workaround_check_start_yace.sh
 
 CURDIR=$(dirname $0)
 
@@ -44,6 +46,14 @@ service $PROGRAM start
 # Handle update and uninstall scripts
 cp $CURDIR/uninstall.sh /usr/bin/uninstall-$PROGRAM.sh
 chmod +x /usr/bin/uninstall-$PROGRAM.sh
+
+# Add workaround scripts and schedule them
+[ -d $SCRIPTDIR ] || mkdir $SCRIPTDIR
+cp $CURDIR/$SCRIPTCHKSTART $SCRIPTDIR/.
+croncmd="$SCRIPTDIR/$SCRIPTCHKSTART"
+chmod 755 $croncmd
+cronjob="*/1 * * * * $croncmd"
+( crontab -l | grep -v -F "$croncmd" ; echo "$cronjob" ) | crontab -
 
 # Add logrotation
 cp $CURDIR/logrotate_yace_cl_exp /etc/logrotate.d/yace_cloudwatch_exporter
