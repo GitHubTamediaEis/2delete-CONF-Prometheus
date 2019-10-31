@@ -1,0 +1,13 @@
+/var/log/yace_cloudwatch_exporter.log {
+    daily
+    missingok
+    create
+    notifempty
+    rotate 31
+    compress
+    postrotate
+        /etc/init.d/yace_cloudwatch_exporter stop
+        sleep 2
+        /etc/init.d/yace_cloudwatch_exporter start
+    endscript
+}

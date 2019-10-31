@@ -1,0 +1,13 @@
+/var/log/alertmanager.log {
+    daily
+    missingok
+    create
+    notifempty
+    rotate 31
+    compress
+    postrotate
+        /etc/init.d/alertmanager stop
+        sleep 1
+        /etc/init.d/alertmanager start
+    endscript
+}

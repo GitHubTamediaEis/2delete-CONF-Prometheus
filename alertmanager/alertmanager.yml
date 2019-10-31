@@ -1,0 +1,32 @@
+global:
+  resolve_timeout: 5m
+
+  # SMTP configuration
+  smtp_smarthost: 'localhost:25'
+  smtp_from: 'toto.tutu@tamedia.ch'
+  smtp_require_tls: false
+
+
+route:
+  group_by: ['alertname']
+  group_wait: 30s
+  group_interval: 30s
+  repeat_interval: 1h
+  receiver: 'mail_test'
+
+receivers:
+- name: 'web.hook'
+  webhook_configs:
+  - url: 'http://localhost:8080/webhooks/prometheus'
+  #- url: 'http://127.0.0.1:5001/'
+
+- name: 'mail_test'
+  email_configs:
+  - to: 'toto.tutu@tamedia.ch'
+
+inhibit_rules:
+  - source_match:
+      severity: 'critical'
+    target_match:
+      severity: 'warning'
+    equal: ['alertname', 'dev', 'instance']

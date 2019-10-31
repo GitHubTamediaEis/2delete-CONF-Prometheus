@@ -1,0 +1,12 @@
+/var/log/node_exporter.log {
+    missingok
+    rotate 31
+    compress
+    notifempty
+    create
+    postrotate
+        /etc/init.d/node_exporter stop
+        sleep 2
+        /etc/init.d/node_exporter start
+    endscript
+}
